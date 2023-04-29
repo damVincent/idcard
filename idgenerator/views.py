@@ -1,5 +1,4 @@
 import datetime
-import os
 import random
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -35,10 +34,9 @@ def create_student_id(request):
             issuance_date = datetime.date.today()
             expiry_date = issuance_date + datetime.timedelta(days=4*365)
             
-             # Creating Image object
+            # Creating Image object
             image1 = Image.new('RGB', (500, 700), (255, 255, 255))  # creating a plain image
-            font_path = os.path.join(os.getcwd(), 'arial', 'arial.ttf')
-            font = ImageFont.truetype(font_path, size=20)
+            font = ImageFont.truetype('Helvetica', size=35)  
             write = ImageDraw.Draw(image1)
 
             # Adding Institution logo
@@ -48,7 +46,7 @@ def create_student_id(request):
 
             # Adding Institution name
             color = 'rgb(64,64,64)'
-            write.text((120, 45), institution, fill=color, font=ImageFont.truetype('arial.ttf', size=35))
+            write.text((120, 45), institution, fill=color, font=ImageFont.truetype('Helvetica', size=35))
 
             # Adding Photo
             pic1 = Image.open(photo)
