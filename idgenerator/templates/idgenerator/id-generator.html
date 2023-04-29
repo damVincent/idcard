@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card {
+        width: 300px;
+        margin: 0 auto;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .logo img {
+        max-width: 100%;
+        height: auto;
+    }
+    .photo img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .info h1 {
+        font-size: 24px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+    .info p {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+</style>
+<div class="card">
+    <div class="logo text-center">
+        <img src="{{ student.institution.logo.url }}" alt="{{ student.institution }}" class="img-fluid" />
+    </div>
+    <div class="photo text-center">
+        <img src="{{ student.photo.url }}" alt="{{ student.name }}" class="img-fluid" />
+    </div>
+    <div class="info">
+        <h1 class="text-center">{{ student.name }}</h1>
+        <p class="text-center">ID: {{ student.unique_id }}</p>
+        <p>Institution: {{ student.institution }}</p>
+        <p>Issued: {{ student.issuance_date }}</p>
+        <p>Expires: {{ student.expiry_date }}</p>
+    </div>
+</div>
+
+{% endblock content %}
+
+

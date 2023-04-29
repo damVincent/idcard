@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student ID Card</title>
+	<style>
+		.card {
+			width: 500px;
+			height: 700px;
+			background-color: #ffffff;
+			border: 1px solid #000000;
+			font-family: arial;
+			font-size: 20px;
+			padding: 20px;
+		}
+
+		.institution {
+			font-size: 35px;
+			font-weight: bold;
+			margin-top: 25px;
+			margin-bottom: 50px;
+			color: #404040;
+		}
+
+		.name {
+			font-size: 24px;
+			font-weight: bold;
+			margin-top: 50px;
+			margin-bottom: 10px;
+			color: #000000;
+		}
+
+		.id {
+			font-size: 20px;
+			margin-bottom: 10px;
+			color: #000000;
+		}
+
+		.expires {
+			font-size: 20px;
+			margin-bottom: 10px;
+			color: #000000;
+		}
+
+		.qr-code {
+			margin-top: 50px;
+			margin-bottom: 20px;
+		}
+
+		.qr-code img {
+			width: 100px;
+			height: 100px;
+		}
+
+		.photo {
+			margin-top: 50px;
+			margin-left: 50px;
+			border: 4px solid #808080;
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.photo img {
+			width: 200px;
+			height: 230px;
+		}
+
+		.logo {
+			margin-bottom: 25px;
+		}
+
+		 .logo img {
+			width: 100px;
+			height: 100px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 10px;
+		 }
+	</style>
+</head>
+<body>
+	<div class="card">
+		<div class="logo">
+			<img src="{{student.logo.url}}">
+		</div>
+		<div class="institution">{{ institution }}</div>
+		<div class="photo">
+			<img src="student.photo.url">
+		</div>
+		<div class="name">{{ first_name }}</div>
+        <div class="name">{{ middle_name }}</div>
+        <div class="name">{{ last_name }}</div>
+		<div class="id">ID: {{ student_id }}</div>
+		<div class="expires">Expires: {{ expiry_date }}</div>
+		<div class="qr-code">
+			<img src="data:image/png;base64,{{ qrcode_data }}" alt="QR Code">
+		</div>
+	</div>
+</body>
+</html>

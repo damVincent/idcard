@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Preview</h1>
+    <p>First name: {{ student.first_name }}</p>
+    <p>Middle name: {{ student.middle_name }}</p>
+    <p>Last name: {{ student.last_name }}</p>
+    <p>Date of birth: {{ student.date_of_birth }}</p>
+    <p>Institution: {{ student.institution }}</p>
+    <p>Student ID: {{ student.student_id }}</p>
+    <p>Expiration date: {{ student.expire_date }}</p>
+    <p>Logo: <img src="{{ student.logo.url }}" /></p>
+    <p>Photo: <img src="{{ student.photo.url }}" /></p>
+    <form action="{% url 'generate' student.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
