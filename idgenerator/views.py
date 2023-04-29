@@ -1,4 +1,5 @@
 import datetime
+import os
 import random
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -6,6 +7,8 @@ import qrcode
 from PIL import Image, ImageFont, ImageDraw, ImageOps
 from django.core.files.base import ContentFile
 from django.http import HttpResponse
+
+from config.settings import STATIC_ROOT
 from .forms import StudentForm
 from .models import Student
 from datetime import date, timedelta
@@ -35,8 +38,12 @@ def create_student_id(request):
             expiry_date = issuance_date + datetime.timedelta(days=4*365)
             
             # Creating Image object
-            image1 = Image.new('RGB', (500, 700), (255, 255, 255))  # creating a plain image
-            font = ImageFont.truetype('arial.ttf', size=20)  # you can use other fonts (calibre for example), but make sure you have it installed on your pc
+            image1 = Image.new('RGB', (500, 700), (255, 255, 255))
+            if os.environ.get('HEROKU'): 
+                font_path = '/app/arial/arial.ttf'
+            else:  # running locally
+                font_path = 'arial/arial.ttf'
+            font = ImageFont.truetype(font_path, size=20) 
             write = ImageDraw.Draw(image1)
 
             # Adding Institution logo
@@ -46,7 +53,7 @@ def create_student_id(request):
 
             # Adding Institution name
             color = 'rgb(64,64,64)'
-            write.text((120, 45), institution, fill=color, font=ImageFont.truetype('arial.ttf', size=35))
+            write.text((120, 45), institution, fill=color, font=ImageFont.truetype(font_path, size=35))
 
             # Adding Photo
             pic1 = Image.open(photo)
