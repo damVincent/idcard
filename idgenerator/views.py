@@ -36,7 +36,7 @@ def create_student_id(request):
             
             # Creating Image object
             image1 = Image.new('RGB', (500, 700), (255, 255, 255))  # creating a plain image
-            font = ImageFont.truetype('Helvetica', size=35)  
+            font = ImageFont.truetype('arial.ttf', size=20)  # you can use other fonts (calibre for example), but make sure you have it installed on your pc
             write = ImageDraw.Draw(image1)
 
             # Adding Institution logo
@@ -46,7 +46,7 @@ def create_student_id(request):
 
             # Adding Institution name
             color = 'rgb(64,64,64)'
-            write.text((120, 45), institution, fill=color, font=ImageFont.truetype('Helvetica', size=35))
+            write.text((120, 45), institution, fill=color, font=ImageFont.truetype('arial.ttf', size=35))
 
             # Adding Photo
             pic1 = Image.open(photo)
